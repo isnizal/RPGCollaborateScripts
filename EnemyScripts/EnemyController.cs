@@ -20,9 +20,6 @@ public class EnemyController : MonoBehaviour
 
     
     
-    //store enemy position before destroy
-    [HideInInspector]
-    public Vector2 lastEnemyPos;
 
     // Start is called before the first frame update
     void Start()

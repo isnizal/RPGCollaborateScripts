@@ -354,7 +354,150 @@ public class ShopSytem : MonoBehaviour
         //get component drop down of the option string type
         //store the string type to current of the press for the player to confirm
         selectedItem = swordDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-       // Debug.Log(selectedItem);
+       Debug.Log(selectedItem);
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
+                Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownAxe()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = axeDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        Debug.Log(selectedItem);
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
+                Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownHammer()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = hammerDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownDagger()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = daggerDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownWand()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = wandDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownArrow()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = arrowDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        //Debug.Log(selectedItem);
         //add tool tip
         swordToolTip.gameObject.SetActive(true);
         //find text children name text, item level, rarity, and value
@@ -364,6 +507,33 @@ public class ShopSytem : MonoBehaviour
             if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
             {
                 //Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
+                //set the text to the selected item property
+                t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
+                t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
+                t_swordRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity;
+                t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values;
+                t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
+                break;
+            }
+            else
+            {
+                Debug.Log("item not in database or there is no selected item to buy");
+            }
+        }
+        //FindItemFromArrayOfGroundItem();
+    }
+    public void ActivateDropDownBow()
+    {
+        //get component drop down of the option string type
+        //store the string type to current of the press for the player to confirm
+        selectedItem = bowDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
+        //add tool tip
+        swordToolTip.gameObject.SetActive(true);
+        //find text children name text, item level, rarity, and value
+        for (int itemDatabase = 0; itemDatabase < itemDatabaseItemObj.ItemObjects.Length; itemDatabase++)
+        {
+            if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
+            {
                 //set the text to the selected item property
                 t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
                 t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();

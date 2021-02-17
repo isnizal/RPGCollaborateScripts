@@ -50,6 +50,7 @@ public class ItemObject : ScriptableObject
 	{
 		
 	}
+	//create new item of the object to called
     public Item CreateItem()
 	{
 		Item newItem = new Item(this);
@@ -100,16 +101,13 @@ public class Item
 		itemLevel = itemObj.newItem.itemLevel;
 		consumables = itemObj.newItem.consumables;
 
-
 		//new one i think
 		itemType = itemObj.itemType;
 		attributes = itemObj.newItem.buffs[0].attribute;
 		itemRarity = itemObj.rarity;
-
+		values = itemObj.newItem.buffs[0].GenerateValue();
+		saveValue = values;
 		buffs = new ItemBuff[itemObj.newItem.buffs.Length];
-
-		
-		
 
 		//loop through the buffs length if have many
 		for (int i = 0; i < buffs.Length; i++)
@@ -117,11 +115,10 @@ public class Item
 			//get the new item buff from looping to equal new item buff min and max
 			buffs[i] = new ItemBuff(itemObj.newItem.buffs[i].min, itemObj.newItem.buffs[i].max);
 			{
+
 				//the current buff attribute to equal to new data buff attribue
 				buffs[i].attribute = itemObj.newItem.buffs[i].attribute;
 			}
-			saveValue = itemObj.newItem.buffs[0].value;
-			values = saveValue;
 
 		}
 	}
@@ -134,7 +131,7 @@ public class ItemBuff : IModifiers
 
 	public  int min;
 	public  int max;
-	//[HideInInspector]
+	[HideInInspector]
 	public int value;
 	public ItemBuff(int _min, int _max)
 	{
@@ -148,9 +145,9 @@ public class ItemBuff : IModifiers
 		baseValue += value;
 	}
 	
-	public void GenerateValue()
+	public int GenerateValue()
 	{
-		value = Random.Range(min, max);
+		return value = Random.Range(min, max);
 
 	}
 }

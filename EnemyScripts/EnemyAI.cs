@@ -37,7 +37,6 @@ public class EnemyAI : MonoBehaviour
 	{
 		if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
 		{
-
 			transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
 		}
 		if (Vector3.Distance(target.position, transform.position) > chaseRadius)
@@ -61,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             timeBetweenMoveCounter -= Time.deltaTime;
-            myRigidbody.velocity = Vector3.zero;
+            myRigidbody.velocity = Vector2.zero;
             if (timeBetweenMoveCounter < 0f)
             {
                 moving = true;

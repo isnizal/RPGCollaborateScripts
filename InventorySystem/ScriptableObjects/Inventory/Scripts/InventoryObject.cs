@@ -203,7 +203,6 @@ public class InventorySlot
 	public SlotUpdated OnBeforeUpdate;
 	//initialize item as new item
 	public Item newItem = new Item();
-	//public ItemBuff itemBuff = new ItemBuff();
 	public int newAmount = 0;
 	[System.NonSerialized]
 	public InventoryObject inventoryObj;

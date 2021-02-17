@@ -13,6 +13,7 @@ public class EnemyStats : MonoBehaviour
 	public int expToGive;
 	
 	private Player thePlayer;
+	private Spawner spawner;
 
 	[Header("Damage Effects")]
 	public GameObject damageNumber;
@@ -28,11 +29,14 @@ public class EnemyStats : MonoBehaviour
 	[HideInInspector]
 	public Vector2 lastEnemyPos;
 	private int randomItemDrop;
+	private Rigidbody2D myrb;
 
 	private void Start()
 	{
 		SetMaxEnemyHealth();
 		thePlayer = FindObjectOfType<Player>();
+		spawner = FindObjectOfType<Spawner>();
+		myrb = GetComponent<Rigidbody2D>();
 	}
 	private bool b_enemyDead = false;
 	private void Update()
@@ -41,9 +45,10 @@ public class EnemyStats : MonoBehaviour
 		if (enemyCurrentHP <= 0)
 		{
 			//store enemy position before die
-			this.GetComponent<EnemyController>().lastEnemyPos = this.transform.position;
+			lastEnemyPos = this.transform.position;
 			Destroy(gameObject);
 			b_enemyDead = true;
+			spawner.spawnCounter--;
 			thePlayer.LevelSystem.AddExp(expToGive);
 		}	
 	}
@@ -56,7 +61,6 @@ public class EnemyStats : MonoBehaviour
 		enemyCurrentHP = enemyMaxHP;
 	}
 
-	//reference clone game object
 	private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Player"))
