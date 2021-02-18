@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
             if (armorAbsorb >= enemyDamage)
             {
                 //call the ui
-                enemy.GetComponent<EnemyStats>().UpdateUIAttack(0);
+                enemy.GetComponent<EnemyStats>().UpdateUIAttackForMiss("MISS");
                 // player health same
                 playerCurrentHP = playerLastHitpoints;
             }

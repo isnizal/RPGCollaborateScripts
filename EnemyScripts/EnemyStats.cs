@@ -73,9 +73,21 @@ public class EnemyStats : MonoBehaviour
 	{
 		//set the floating number to this enemy attack power
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
+		clone.GetComponent<FloatingNumbers>().changeUI = true;
 		clone.GetComponent<FloatingNumbers>().damageNumber = enemyAttackPower;
 	}
+	//miss damage
+	public void UpdateUIAttackForMiss(string enemyAttackPower)
+	{
+		//set the floating number to this enemy attack power
+		//spawn obj at player transform
+		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
+		clone.GetComponent<FloatingNumbers>().changeUI = false;
+		//get the object damage number floating point
+		clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower;
 
+
+	}
 	//calling on destroy function after enemy destroy
 	private void OnDestroy()
 	{

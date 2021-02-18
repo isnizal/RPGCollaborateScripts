@@ -371,12 +371,12 @@ public abstract class UserInterface : MonoBehaviour
 					//slotsOnInterface[obj].RemoveItem();
 					return;
 				}
-				Debug.Log(MouseData.slotHoveredOver);
+
 				//check for mouse data slot is hoverred on the object
 				//Debug.Log(MouseData.slotHoveredOver.name);
 				if (MouseData.slotHoveredOver)
 				{
-					Debug.Log(MouseData.interfaceMouseIsOver);
+					//Debug.Log(MouseData.interfaceMouseIsOver);
 					if (MouseData.interfaceMouseIsOver)
 					{
 						//ebug.Log("on drag end slot on interface item object is" + slotsOnInterface[obj].newItem.Name);
