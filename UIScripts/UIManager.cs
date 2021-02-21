@@ -50,6 +50,8 @@ public class UIManager : MonoBehaviour
     {
         healthBar.maxValue = player.playerMaxHP;
         healthBar.value = player.playerCurrentHP;
+        manaBar.maxValue = player.playerMaxMana;
+        manaBar.value = player.playerCurrentMana;
 
         xPBar.minValue = player.LevelSystem.GetXPForLevel(player.LevelSystem.currentLevel - 1);
         xPBar.maxValue = player.LevelSystem.GetXPForLevel(player.LevelSystem.currentLevel + 1);

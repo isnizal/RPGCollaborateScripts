@@ -7,11 +7,20 @@ public class GroundItem : MonoBehaviour, ISerializationCallbackReceiver
 {
     public ItemObject itemObject;
 
-	//on start check for the item sword or armor
-	//set sword and armor level can equip
-	public void OnAfterDeserialize()
+    private void Start()
+    {
+		//calling coroutine
+		StartCoroutine(SelfDestroy());
+    }
+    public void OnAfterDeserialize()
 	{
 
+	}
+	//destroy the object after 3 min
+	IEnumerator SelfDestroy()
+	{
+		yield return new WaitForSeconds(180f);
+		Destroy(gameObject);
 	}
 
 	public void OnBeforeSerialize()

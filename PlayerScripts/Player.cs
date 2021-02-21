@@ -60,9 +60,8 @@ public class Player : MonoBehaviour
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
 
         }
-
         SetMaxPlayerHealth();
-
+        SetMaxPlayerMana();
         LevelSystem = new Level(1, OnLevelUp);
 
         animator = GetComponent<Animator>();
@@ -75,9 +74,28 @@ public class Player : MonoBehaviour
 	{
        
         statPoints = Random.Range(1, 5);
+        IncreaseMaxHpForClass();
         print("Level Up!");
 	}
-
+    //function class increase max hitpoints
+    void IncreaseMaxHpForClass()
+    {
+        if (name == "Warrior")
+        {
+            float newPlayerMaxHp = playerMaxHP * 1.3f;
+            playerMaxHP = Mathf.RoundToInt(newPlayerMaxHp);
+        }
+        else if (name == "Archer")
+        {
+            float newPlayerMaxMp = playerMaxMana *0.8f;
+            playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
+        }
+        else if (name == "Mage")
+        {
+            float newPlayerMaxMp = playerMaxMana * 0.5f;
+            playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
+        }
+    }
     public void OnBeforeSlotUpdate(InventorySlot _slot)
 	{
         //check slot is null of the item object is null to return
@@ -380,7 +398,10 @@ public class Player : MonoBehaviour
 	{
         playerCurrentHP = playerMaxHP;
 	}
-
+    public void SetMaxPlayerMana()
+    {
+        playerCurrentMana = playerMaxMana;
+    }
     public void AddGold(int amount)
 	{
         currentGold += amount;

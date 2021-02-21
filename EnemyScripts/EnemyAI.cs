@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class EnemyAI : MonoBehaviour
     public float timeToMove;
     private float timeToMoveCounter;
     private Vector3 moveDirection;
+    //spawn enemy name
+    public GameObject enemyText;
 
 
     void Start()
@@ -25,6 +28,10 @@ public class EnemyAI : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
         timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
+        var nameTag = Instantiate(enemyText);
+        nameTag.GetComponentInChildren<Transform>().transform.position = new Vector2(transform.position.x,transform.position.y + 1f);
+        nameTag.GetComponentInChildren<TextMeshProUGUI>().text = "Red Slime";
+        nameTag.transform.SetParent(transform);
     }
 
     

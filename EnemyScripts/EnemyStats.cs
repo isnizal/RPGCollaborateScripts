@@ -24,7 +24,7 @@ public class EnemyStats : MonoBehaviour
 	public List<GameObject> Items;
 	[Space]
 	public GameObject goldPrefab;
-	private int randomNumber;
+	private float randomItemSpawn;
 	private int total;
 	[HideInInspector]
 	public Vector2 lastEnemyPos;
@@ -95,29 +95,48 @@ public class EnemyStats : MonoBehaviour
 		if (b_enemyDead)
 		{
 			SpawnItem();
-			GameObject gold = Instantiate(goldPrefab, new Vector2(lastEnemyPos.x, lastEnemyPos.y), Quaternion.identity);
-			b_enemyDead = false;
 		}
 	}
 
 	//make function SpawnItem
 	void SpawnItem()
 	{
-		foreach (var item in table)
+		//get random item spawn from the random range
+		randomItemSpawn = Random.Range(0, 1f);
+		//Debug.Log(randomItemSpawn);
+		//10 percent spawn random item
+		if (randomItemSpawn <= 0.1f || randomItemSpawn <= 0.05f)
 		{
-			total += item;
-		}
-		randomNumber = Random.Range(0, total);
-
-		for (int i = 0; i < table.Length; i++)
-		{
-			if (randomNumber <= table[i])
+			//spawn random item from the random table
+			int getRandomItem = Random.Range(0, Items.Count);
+			if (b_enemyDead)
 			{
-				GameObject item = Instantiate(Items[randomItemDrop], new Vector2(lastEnemyPos.x, lastEnemyPos.y), Quaternion.identity) as GameObject;
-				//item.transform.SetParent(GameObject.Find("ParentItemDrop").transform);
-				return;
+				b_enemyDead = false;
+				GameObject item = Instantiate(Items[getRandomItem], new Vector2(lastEnemyPos.x, lastEnemyPos.y), Quaternion.identity) as GameObject;
 			}
-			else { randomNumber -= table[i]; }
+
 		}
+		//90 percent spawn random gold
+		else if (randomItemSpawn > 0.1f && randomItemSpawn <= 1f)
+		{
+			if (b_enemyDead)
+			{
+				b_enemyDead = false;
+				//spawn gold with different random gold value
+				GameObject gold = Instantiate(goldPrefab, new Vector2(lastEnemyPos.x, lastEnemyPos.y), Quaternion.identity);
+			}
+		}
+		//loop through the number of the table
+		//for (int i = 0; i < table.Length; i++)
+		//{
+		//	//check random number less than current table
+		//	if (randomItemSpawn <= table[i])
+		//	{
+		//		GameObject item = Instantiate(Items[randomItemDrop], new Vector2(lastEnemyPos.x, lastEnemyPos.y), Quaternion.identity) as GameObject;
+		//		//item.transform.SetParent(GameObject.Find("ParentItemDrop").transform);
+		//		return;
+		//	}
+		//	else { randomItemSpawn -= table[i]; }
+		//}
 	}
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 public class ArrowMove : MonoBehaviour
 {
     public float arrowSpeed = 1100f;
-    public float selfDestroy = 5f;
+    public float shootingRange = 5f;
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("DestroyArrow", selfDestroy);
+        Invoke("DestroyArrow", shootingRange);
     }
     public bool enableRightMove, enableUpMove, enableDownMove, enableLeftMove;
     // Update is called once per frame
