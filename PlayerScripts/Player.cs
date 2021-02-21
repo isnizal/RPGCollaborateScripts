@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public int playerIntelligencePower;
     [Space]
     public int statPoints;
-    public int statPointsAllocated;
+    public float statPointsAllocated;
     [Space]
     public Level LevelSystem;
     [Space]
@@ -184,6 +184,7 @@ public class Player : MonoBehaviour
             {
                 if (arrowSpawn)
                 {
+                    Debug.Log("fire");
                     if (canFire)
                     {
                         canFire = false;

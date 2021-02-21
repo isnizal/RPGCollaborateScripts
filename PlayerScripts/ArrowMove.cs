@@ -6,6 +6,7 @@ public class ArrowMove : MonoBehaviour
 {
     public float arrowSpeed = 1100f;
     public float shootingRange = 5f;
+    public float arrowDamage = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +37,14 @@ public class ArrowMove : MonoBehaviour
     public void DestroyArrow()
     {
         Destroy(gameObject);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            collision.gameObject.GetComponent<EnemyStats>().DamageToEnemy(arrowDamage);
             Destroy(gameObject);
         }
     }

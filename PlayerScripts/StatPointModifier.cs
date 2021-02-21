@@ -13,9 +13,13 @@ public class StatPointModifier : MonoBehaviour
     public TextMeshProUGUI defAllocatedValueText;
     public TextMeshProUGUI intValueText;
     public TextMeshProUGUI intAllocatedValueText;
+    //Archer
+    public TextMeshProUGUI dexValueText;
+    public TextMeshProUGUI dexAllocatedValueText;
     private int tempstrholder;
     private int tempdefholder;
     private int tempintholder;
+    private float tempdexholder;
 
     private Player thePlayer;
     // Start is called before the first frame update
@@ -31,9 +35,17 @@ public class StatPointModifier : MonoBehaviour
         strAllocatedValueText.text = "" + tempstrholder;
         defValueText.text = "" + thePlayer.attributes[1].modifiableValue.BaseValue;
         defAllocatedValueText.text = "" + tempdefholder;
-        intValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
-        intAllocatedValueText.text = "" + tempintholder;
-    }
+        if (thePlayer.name == "Mage")
+        {
+            intValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
+            intAllocatedValueText.text = "" + tempintholder;
+        }
+		else if (thePlayer.name == "Archer")
+		{
+			dexValueText.text = "" + thePlayer.archerRateOfFire;
+			dexAllocatedValueText.text = "" + tempdexholder;
+		}
+	}
     public void AddStrStat()
 	{
         if(thePlayer.statPoints > 0)
@@ -108,7 +120,33 @@ public class StatPointModifier : MonoBehaviour
             print("You cant remove any more points");
         }
     }
-    public void ConfirmAllocation()
+
+	//for archer
+	public void AddDexStat()
+	{
+		if (tempdexholder > 0f)
+		{
+			tempdexholder = +.1f;
+			thePlayer.statPoints--;
+		}
+		else if (tempdexholder < 1f)
+		{
+			print("You dont have enough stat points");
+		}
+	}
+	public void RemoveDexStat()
+	{
+		if (tempdexholder > 0f)
+		{
+			tempdexholder -= .1f;
+			thePlayer.statPoints++;
+		}
+		else if (tempdexholder < 1f)
+		{
+			print("You cant remove any more points");
+		}
+	}
+	public void ConfirmAllocation()
 	{
         thePlayer.attributes[0].modifiableValue.BaseValue += tempstrholder;
         thePlayer.statPointsAllocated += tempstrholder;
@@ -118,10 +156,19 @@ public class StatPointModifier : MonoBehaviour
         thePlayer.statPointsAllocated += tempdefholder;
         tempdefholder = 0;
 
-        thePlayer.attributes[2].modifiableValue.BaseValue += tempintholder;
-        thePlayer.statPointsAllocated += tempintholder;
-        tempintholder = 0;
-    }
+        if (thePlayer.name == "Mage")
+        {
+            thePlayer.attributes[2].modifiableValue.BaseValue += tempintholder;
+            thePlayer.statPointsAllocated += tempintholder;
+            tempintholder = 0;
+        }
+		else if (thePlayer.name == "Archer")
+		{
+			thePlayer.archerRateOfFire += tempdexholder;
+			thePlayer.statPointsAllocated += tempdexholder;
+			tempdexholder = 0f;
+		}
+	}
 
 
 
