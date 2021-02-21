@@ -140,11 +140,12 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    private bool arrowSpawn;
+    private bool canFire = true;
+    private bool orbSpawn;
     void Update()
     {
         currentValueText.text = "" + currentGold;
-
         if (Input.GetKeyDown(KeyCode.S))
 		{
             inventory.Save();
@@ -161,7 +162,32 @@ public class Player : MonoBehaviour
         AnimationUpdate();
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            StartCoroutine(Attacking());
+            if (this.name == "Archer")
+            {
+                if (arrowSpawn)
+                {
+                    if (canFire)
+                    {
+                        canFire = false;
+                        StartCoroutine(Attacking("Archer"));
+                    }
+                }
+            }
+            else if (this.name == "Mage")
+            {
+                if (orbSpawn)
+                {
+                    if (canFire)
+                    {
+                        canFire = false;
+                        StartCoroutine(Attacking("Mage"));
+                    }
+                }
+            }
+            else
+            {
+                StartCoroutine(Attacking("Warrior"));
+            }
         }
 
         if (playerCurrentHP <= 0)
@@ -170,30 +196,130 @@ public class Player : MonoBehaviour
 		}
 
     }
-
 	void AnimationUpdate()
     {
         if (movement != Vector3.zero)
         {
-            MovePlayer();
-            animator.SetFloat("moveX", movement.x);
-            animator.SetFloat("moveY", movement.y);
-            animator.SetBool("moving", true);
+            if (this.name == "Archer" || this.name == "Mage")
+            {
+                if (canFire)
+                {
+                    MovePlayer();
+                    animator.SetFloat("moveX", movement.x);
+                    animator.SetFloat("moveY", movement.y);
+                    animator.SetBool("moving", true);
+                    arrowSpawn = false;
+                    orbSpawn = false;
+                }
+            }
+            else
+            {
+                MovePlayer();
+                animator.SetFloat("moveX", movement.x);
+                animator.SetFloat("moveY", movement.y);
+                animator.SetBool("moving", true);
+                arrowSpawn = false;
+                orbSpawn = false;
+            }
         }
         else
         {
+            arrowSpawn = true;
+            orbSpawn = true;
             animator.SetBool("moving", false);
             myRigidbody.velocity = Vector2.zero;
         }
     }
-    private IEnumerator Attacking()
+    public GameObject arrowPrefab;
+    public GameObject orbPrefab;
+    public float archerRateOfFire = 0.6f;
+    public float mageRateOfFire = 1f;
+    private IEnumerator Attacking(string warriorClass)
 	{
-        animator.SetBool("attacking", true);
-        yield return null;
-        animator.SetBool("attacking", false);
-        yield return new WaitForSeconds(.3f);
+        if (warriorClass == "Warrior")
+        {
+            animator.SetBool("attacking", true);
+            yield return null;
+            animator.SetBool("attacking", false);
+            yield return new WaitForSeconds(.3f);
+        }
+        else if (warriorClass == "Archer")
+        {
+            animator.SetBool("attacking", true);
+            yield return new WaitForSeconds(archerRateOfFire);
+            animator.SetBool("attacking", false);
+            canFire = true;
+        }
+        else if (warriorClass == "Mage")
+        {
+            animator.SetBool("attacking", true);
+            yield return null;
+            animator.SetBool("attacking", false);
+            yield return new WaitForSeconds(mageRateOfFire);
+            canFire = true;
+        }
 	}
+    public void SpawnArrowUp()
+    {
 
+        if (this.name == "Archer")
+        {
+                GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, 45)));
+                arrow.transform.SetParent(transform);
+                arrow.GetComponent<ArrowMove>().enableUpMove = true;
+
+        }
+        else if (this.name == "Mage")
+        {
+
+            GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<OrbMove>().enableUpMove = true;
+        }
+
+    }
+    public void SpawnArrowLeft() {
+        if (this.name == "Archer")
+        {
+            GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, 135)));
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<ArrowMove>().enableLeftMove = true;
+        }
+        else if (this.name == "Mage")
+        {
+            GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<OrbMove>().enableLeftMove = true;
+        }
+    }
+    public void SpawnArrowRight() {
+        if (this.name == "Archer")
+        {
+            GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, -45)));
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<ArrowMove>().enableRightMove = true;
+        }
+        else if (this.name == "Mage")
+        {
+            GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<OrbMove>().enableRightMove = true;
+        }
+    }
+    public void SpawnArrowDown() {
+        if (this.name == "Archer")
+        {
+            GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, -135)));
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<ArrowMove>().enableDownMove = true;
+        }
+        else if (this.name == "Mage")
+        {
+            GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            arrow.transform.SetParent(transform);
+            arrow.GetComponent<OrbMove>().enableDownMove = true;
+        }
+    }
     void MovePlayer()
 	{
       movement.Normalize();

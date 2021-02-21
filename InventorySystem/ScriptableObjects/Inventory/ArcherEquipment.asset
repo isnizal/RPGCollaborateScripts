@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d693c323c66265e49b8b024b5f9300e1, type: 3}
-  m_Name: PlayerEquipment
+  m_Name: ArcherEquipment
   m_EditorClassIdentifier: 
-  savePath: /equipment.Save
+  savePath: /Aequipment.Save
   itemDataBase: {fileID: 11400000, guid: 70ffd974d2038d74c9f9ff9fa002b26d, type: 2}
   type: 1
   Container:
@@ -41,7 +41,7 @@ MonoBehaviour:
         attributes: 0
         values: 0
       newAmount: 0
-    - AllowType: 03000000
+    - AllowType: 04000000
       newItem:
         Name: 
         Id: -1
@@ -53,7 +53,7 @@ MonoBehaviour:
         attributes: 0
         values: 0
       newAmount: 0
-    - AllowType: 0300000007000000
+    - AllowType: 05000000
       newItem:
         Name: 
         Id: -1

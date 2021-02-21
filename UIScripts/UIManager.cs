@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         userInterface = FindObjectOfType<UserInterface>();
+        //DontDestroyOnLoad(this.gameObject);
 
     }
 
