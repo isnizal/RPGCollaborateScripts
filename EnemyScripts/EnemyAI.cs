@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);
         var nameTag = Instantiate(enemyText);
         nameTag.GetComponentInChildren<Transform>().transform.position = new Vector2(transform.position.x,transform.position.y + 1f);
-        nameTag.GetComponentInChildren<TextMeshProUGUI>().text = "Red Slime";
+        nameTag.GetComponentInChildren<TextMeshProUGUI>().text = GetComponent<EnemyStats>().enemyName.ToString();
         nameTag.transform.SetParent(transform);
     }
 
