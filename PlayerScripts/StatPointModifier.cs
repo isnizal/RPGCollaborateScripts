@@ -19,7 +19,7 @@ public class StatPointModifier : MonoBehaviour
     private int tempstrholder;
     private int tempdefholder;
     private int tempintholder;
-    private float tempdexholder;
+    private int tempdexholder;
 
     private Player thePlayer;
     // Start is called before the first frame update
@@ -42,7 +42,8 @@ public class StatPointModifier : MonoBehaviour
         }
 		else if (thePlayer.name == "Archer")
 		{
-			dexValueText.text = "" + thePlayer.archerRateOfFire;
+            //start range maybe at 5, 5 equal 0 dexterity holder value
+			dexValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
 			dexAllocatedValueText.text = "" + tempdexholder;
 		}
 	}
@@ -124,9 +125,10 @@ public class StatPointModifier : MonoBehaviour
 	//for archer
 	public void AddDexStat()
 	{
-		if (tempdexholder > 0f)
+        thePlayer.enableDxtPowr = true;
+		if (thePlayer.statPoints > 0f)
 		{
-			tempdexholder = +.1f;
+			tempdexholder++;
 			thePlayer.statPoints--;
 		}
 		else if (tempdexholder < 1f)
@@ -138,7 +140,7 @@ public class StatPointModifier : MonoBehaviour
 	{
 		if (tempdexholder > 0f)
 		{
-			tempdexholder -= .1f;
+            tempdexholder--;
 			thePlayer.statPoints++;
 		}
 		else if (tempdexholder < 1f)
@@ -164,9 +166,12 @@ public class StatPointModifier : MonoBehaviour
         }
 		else if (thePlayer.name == "Archer")
 		{
-			thePlayer.archerRateOfFire += tempdexholder;
-			thePlayer.statPointsAllocated += tempdexholder;
-			tempdexholder = 0f;
+            //increase range
+			//thePlayer.arrowPrefab.GetComponent<ArrowMove>().shootingRange += tempdexholder;
+            thePlayer.attributes[2].modifiableValue.BaseValue += tempdexholder;
+            //save staspoints allocated
+            thePlayer.statPointsAllocated += tempdexholder;
+			tempdexholder = 0;
 		}
 	}
 

@@ -63,7 +63,14 @@ public class UIManager : MonoBehaviour
 
         strValueText.text = "" + player.playerAttackPower.ToString();
         defValueText.text = "" + player.playerDefensePower.ToString();
-        intValueText.text = "" + player.playerIntelligencePower.ToString();
+        if (player.name == "Archer")
+        {
+            intValueText.text = "" + player.playerDexterityPower.ToString() ;
+        }
+        else
+        {
+            intValueText.text = "" + player.playerIntelligencePower.ToString();
+        }
 
         statsPointsText.text = "" + player.statPoints;
     }

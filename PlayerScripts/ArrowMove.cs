@@ -5,17 +5,21 @@ using UnityEngine;
 public class ArrowMove : MonoBehaviour
 {
     public float arrowSpeed = 1100f;
-    public float shootingRange = 5f;
-    public float arrowDamage = 2f;
+    private float shootingRange ;
+    public int arrowDamage = 2;
+    Player thePlayer;
     // Start is called before the first frame update
     void Start()
     {
+        thePlayer = FindObjectOfType<Player>();
+        shootingRange = thePlayer.arrowRange;
+        Debug.Log(shootingRange);
         Invoke("DestroyArrow", shootingRange);
     }
     public bool enableRightMove, enableUpMove, enableDownMove, enableLeftMove;
     // Update is called once per frame
     void Update()
-    {   
+    {
         if (enableRightMove)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(arrowSpeed * Time.deltaTime, 0);

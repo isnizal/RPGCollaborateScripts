@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public int playerAttackPower;
     public int playerDefensePower;
     public int playerIntelligencePower;
+    public float playerDexterityPower;
     [Space]
     public int statPoints;
     public float statPointsAllocated;
@@ -422,7 +423,7 @@ public class Player : MonoBehaviour
 		{
             //initialize new item function item object
             Item newItem = new Item(groundItem.itemObject);
-            if(inventory.AddItem(newItem , 1))
+            if (inventory.AddItem(newItem , 1))
 			{
                 StartCoroutine(WaitForSeconds(0.3f, other.gameObject));
 			}        
@@ -436,16 +437,36 @@ public class Player : MonoBehaviour
         //call the destroy object
         Destroy(item.gameObject);
     }
+    public bool enableDxtPowr;
     public void AttributeModified(Attribute attribute)
 	{
         Debug.Log(string.Concat(attribute.attributeType, " was updated! Value is now ", attribute.modifiableValue.ModifiedValue));
         var tempattackvalue = attributes[0].modifiableValue.ModifiedValue;
         var tempdefensevalue = attributes[1].modifiableValue.ModifiedValue;
         var tempintelligencevalue = attributes[2].modifiableValue.ModifiedValue;
+        var tempdexterityvalue = attributes[2].modifiableValue.ModifiedValue;
         playerAttackPower = tempattackvalue;
         playerDefensePower = tempdefensevalue;
         playerIntelligencePower = tempintelligencevalue;
+        playerDexterityPower = tempdexterityvalue;
+        if (attribute.attributeType == Attributes.Dexterity)
+        {
+            if (this.name == "Archer")
+            {
+                if (enableDxtPowr)
+                {
+                    enableDxtPowr = false;
+                    float t_dexterityPower = playerDexterityPower;
+                    t_dexterityPower *= multiplierPower;
+                    Debug.Log(t_dexterityPower);
+                    arrowRange += t_dexterityPower;
+                    Debug.Log("new range " + arrowRange);
+                }
+            }
+        }
 	}
+    public float arrowRange = 0.2f;
+    private float multiplierPower =  0.01f;
 	//Inventory clean on quit. (temp method)
 	private void OnApplicationQuit()
 	{

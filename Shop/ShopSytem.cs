@@ -722,8 +722,8 @@ public class ShopSytem : MonoBehaviour
             {
                 Debug.Log("have money");
                 player.currentGold -= itemPrice;
-                DeactivateAllToolTip();
                 B_confirm();
+                DeactivateAllToolTip();
                 if (player.currentGold <= 0)
                 {
                     player.currentGold = 0;
@@ -773,12 +773,16 @@ public class ShopSytem : MonoBehaviour
     //add item to inventory
     public void AddItemInventory()
     {
-        Item newItem = new Item(selectedObject.itemObject);
-        //else to add item to inventory
-        player.inventory.AddItem(newItem,1);
-        fullSlot.SetActive(false);
-        buyButton.SetActive(false);
-        B_Nconfirm();
+        if (buyOnce)
+        {
+            buyOnce = false;
+            Item newItem = new Item(selectedObject.itemObject);
+            //else to add item to inventory
+            player.inventory.AddItem(newItem, 1);
+            fullSlot.SetActive(false);
+            buyButton.SetActive(false);
+            B_Nconfirm();
+        }
     }
     //variable selected obj to sell
     private InventorySlot selectedObjToSell;
@@ -828,12 +832,13 @@ public class ShopSytem : MonoBehaviour
     //function enable pop up screen to buy
     public void B_confirm()
     {
+        buyOnce = true;
         //enable pop up screen to confirm buy
         confirmationBuyScreen.SetActive(true);
         
     }
     //reference control loop to prevent error looping buying the same item
-    private bool controlLoop;
+    private bool buyOnce;
     //referece item can buy
     private bool itemEnable;
     //function for loop one call after player trully buy

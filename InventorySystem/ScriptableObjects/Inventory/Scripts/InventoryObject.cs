@@ -34,7 +34,6 @@ public class InventoryObject : ScriptableObject
 		if (EmptySlotCount <= 0)
 			return false;
 
-
 		//check item at the slot for the same ID to get that slot item
 		InventorySlot sameSlotID = FindItemOnInventory(newItem);
 		//item database for the new item is it not healing or sameslot id is none

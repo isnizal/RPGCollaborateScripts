@@ -6,6 +6,7 @@ public class OrbMove : MonoBehaviour
 {
     public float orbSpeed = 1100f;
     public float selfDestroy;
+    public int orbDamage = 4;
     public GameObject orbEffect;
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class OrbMove : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Instantiate(orbEffect, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            collision.gameObject.GetComponent<EnemyStats>().DamageToEnemy(orbDamage);
             Destroy(gameObject);
         }
     }

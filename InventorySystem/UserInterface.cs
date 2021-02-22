@@ -118,6 +118,7 @@ public abstract class UserInterface : MonoBehaviour
 			}
 			else
 			{
+				//Debug.Log(slotsOnInterface[slotPrefab].ItemObject.newItem.Name);
 				//check item  item is food
 				if (slotsOnInterface[slotPrefab].ItemObject.itemType == ItemType.Healing)
 				{

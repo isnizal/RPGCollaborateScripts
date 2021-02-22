@@ -33,6 +33,7 @@ public enum Attributes
 	Strength,
 	Defense,
 	Intelligence,
+	Dexterity,
 	NonAttributes
 
 }
