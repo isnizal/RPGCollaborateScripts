@@ -6,30 +6,35 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private GameObject player, playerCanvas;
+	public string sceneToGoTo;
+	public Animator transition;
+	public float transitiontime;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        DontDestroyOnLoad(player);
-        playerCanvas = GameObject.Find("WorldCanvas");
-        DontDestroyOnLoad(playerCanvas);
-        //StartCoroutine(WaitForSecond());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void LoadScene(string levelName)
-    {
-        SceneManager.LoadScene(levelName);
-    }
-
-    IEnumerator WaitForSecond()
-    {
-        yield return new WaitForSeconds(3f);
-        LoadScene("DungeonScene");
-    }
+		if (SceneManager.GetActiveScene().name != "TitleScreen")
+		{
+			//player = GameObject.FindWithTag("Player");
+			//DontDestroyOnLoad(player);
+			playerCanvas = GameObject.Find("WorldCanvas");
+			DontDestroyOnLoad(playerCanvas);
+		}
+	}
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.CompareTag("Player"))
+		{
+			StartCoroutine(LoadScene());
+		}
+	}
+	IEnumerator LoadScene()
+	{
+		transition.SetTrigger("Start");
+		yield return new WaitForSeconds(transitiontime);
+		SceneManager.LoadScene(sceneToGoTo, LoadSceneMode.Single);
+	}
+	public void LoadNormalScene()
+	{
+		SceneManager.LoadScene(sceneToGoTo);
+	}
 }

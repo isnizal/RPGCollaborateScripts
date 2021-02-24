@@ -43,11 +43,22 @@ public class Player : MonoBehaviour
 
     private EnemyStats theEnemy;
     private UIManager ui;
-    
+
+    public static Player instance;
   
     void Start()
     {
-        ui = GetComponent<UIManager>();
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+
+		ui = GetComponent<UIManager>();
         //set attribute and equipment
 		for (int i = 0; i < attributes.Length; i++)
 		{
@@ -185,7 +196,6 @@ public class Player : MonoBehaviour
             {
                 if (arrowSpawn)
                 {
-                    Debug.Log("fire");
                     if (canFire)
                     {
                         canFire = false;

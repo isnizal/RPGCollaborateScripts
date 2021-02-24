@@ -13,7 +13,6 @@ public class ArrowMove : MonoBehaviour
     {
         thePlayer = FindObjectOfType<Player>();
         shootingRange = thePlayer.arrowRange;
-        Debug.Log(shootingRange);
         Invoke("DestroyArrow", shootingRange);
     }
     public bool enableRightMove, enableUpMove, enableDownMove, enableLeftMove;

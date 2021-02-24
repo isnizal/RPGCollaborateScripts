@@ -10,7 +10,7 @@ public class Wall : MonoBehaviour
     void Start()
     {
         //find ui manager
-        uiManager = FindObjectOfType<UIManager>();
+        //uiManager = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class Wall : MonoBehaviour
     {
 
         //set dontspawnatwall to false
-        uiManager.dontSpawnAtWall = false;
+        //uiManager.dontSpawnAtWall = false;
     }
     private void OnMouseExit()
     {

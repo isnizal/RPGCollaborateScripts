@@ -21,9 +21,13 @@ public class EnemyAI : MonoBehaviour
     //spawn enemy name
     public GameObject enemyText;
 
+    private Animator animator;
+
 
     void Start()
     {
+
+        animator = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         myRigidbody = GetComponent<Rigidbody2D>();
         timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
@@ -38,14 +42,28 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         EnemyFollow();
+        if (this.name != "RedSlime(Clone)")
+        {
+            if (myRigidbody.velocity != Vector2.zero)
+            {
+                animator.SetFloat("moveX", myRigidbody.velocity.x);
+                animator.SetFloat("moveY", myRigidbody.velocity.y);
+                animator.SetBool("moving", true);
+            }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
+        }
+
     }
 
 	void EnemyFollow()
 	{
-		if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
-		{
-			transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-		}
+        if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
+        {
+            transform.position= Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        }
 		if (Vector3.Distance(target.position, transform.position) > chaseRadius)
 		{
 			FreeRoam();
