@@ -37,4 +37,17 @@ public class LevelManager : MonoBehaviour
 	{
 		SceneManager.LoadScene(sceneToGoTo);
 	}
+	public void LoadSaveScene()
+	{
+		ProtectedSaveFiles.Basic.SaveController.Load();
+		if (ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerScene == null)
+		{
+			Debug.Log("no save scene");
+		}
+		else
+		{
+			string toLoadScene = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerScene;
+			SceneManager.LoadScene(toLoadScene);
+		}
+	}
 }

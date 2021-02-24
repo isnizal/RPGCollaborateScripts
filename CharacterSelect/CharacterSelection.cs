@@ -12,7 +12,9 @@ public class CharacterSelection : MonoBehaviour
 	[SerializeField]
 	private GameObject magePrefab;
 	[SerializeField]
-	private GameObject characterSelection;
+	private GameObject characterSelectionPanel;
+
+	public string saveCharacterName;
 
     private void Start()
     {
@@ -26,22 +28,27 @@ public class CharacterSelection : MonoBehaviour
 			case "warriorPrefab":
 				characterObject = Instantiate(warriorPrefab);
 				characterObject.transform.SetParent(transform);
+				saveCharacterName = character;
 				characterObject.gameObject.SetActive(false);
 				break;
 			case "magePrefab":
 				characterObject = Instantiate(warriorPrefab);
 				characterObject.transform.SetParent(transform);
+				saveCharacterName = character;
 				characterObject.gameObject.SetActive(false);
 				break;
 			case "archerPrefab":
 				characterObject = Instantiate(warriorPrefab);
 				characterObject.transform.SetParent(transform);
+				saveCharacterName = character;
 				characterObject.gameObject.SetActive(false);
 				break;
 		}
-		characterSelection.gameObject.SetActive(false);
-		SceneManager.LoadScene("MainWorld");
-		
+		characterSelectionPanel.gameObject.SetActive(false);
+		if (SceneManager.GetActiveScene().name == "CharacterSelect")
+		{
+			SceneManager.LoadScene("MainWorld");
+		}
 	}
 	public GameObject GetCharacterObject()
 	{

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -41,13 +42,14 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI currentValueText;
     public int currentGold;
 
-    private EnemyStats theEnemy;
-    private UIManager ui;
+    private string currentCharacterSelection;
+    
 
     public static Player instance;
   
     void Start()
     {
+        
         if (instance != null)
         {
             gameObject.SetActive(false);
@@ -58,7 +60,7 @@ public class Player : MonoBehaviour
             instance = this;
         }
 
-		ui = GetComponent<UIManager>();
+		//ui = GetComponent<UIManager>();
         //set attribute and equipment
 		for (int i = 0; i < attributes.Length; i++)
 		{
@@ -72,6 +74,15 @@ public class Player : MonoBehaviour
             equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
 
         }
+        if (FindObjectOfType<CharacterSelection>())
+        {
+            currentCharacterSelection = FindObjectOfType<CharacterSelection>().saveCharacterName;
+        }
+        else
+        {
+            Debug.Log("cannot find character selection");
+        }
+
         SetMaxPlayerHealth();
         SetMaxPlayerMana();
         LevelSystem = new Level(1, OnLevelUp);
@@ -89,6 +100,7 @@ public class Player : MonoBehaviour
         IncreaseMaxHpForClass();
         print("Level Up!");
 	}
+    
     //function class increase max hitpoints
     void IncreaseMaxHpForClass()
     {
@@ -173,16 +185,51 @@ public class Player : MonoBehaviour
     private bool arrowSpawn;
     private bool canFire = true;
     private bool orbSpawn;
+    public int playerExperience;
+    public int playerLevel;
+    public float playerPositionX;
+    public float playerPositionY;
+    
     void Update()
     {
         currentValueText.text = "" + currentGold;
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.K))
 		{
+            playerExperience = LevelSystem.experience;
+            playerLevel = LevelSystem.currentLevel;
+            playerPositionX = transform.position.x;
+            playerPositionY = transform.position.y;
+            Debug.Log("save");
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold = currentGold;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP = playerCurrentHP;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana = playerCurrentMana;
+            ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP = LevelSystem.experience;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel = LevelSystem.currentLevel;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX = transform.position.x;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY = transform.position.y;
+            ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection = currentCharacterSelection;
+            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerScene = SceneManager.GetActiveScene().name;
+
+            ProtectedSaveFiles.Basic.SaveController.Save();
             inventory.Save();
             equipment.Save();
 		}
         if(Input.GetKeyDown(KeyCode.L))
 		{
+
+            Debug.Log("load");
+            ProtectedSaveFiles.Basic.SaveController.Load();
+            currentGold = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold;
+            playerCurrentHP = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP;
+            playerCurrentMana = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana;
+            playerExperience = ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP;
+            playerLevel  = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel;
+            playerPositionX = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX;
+            playerPositionY = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY;
+            currentCharacterSelection = ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection;
+
+            
+            transform.position = new Vector2(playerPositionX, playerPositionY);
             inventory.Load();
             equipment.Load();
 		}            
@@ -224,7 +271,7 @@ public class Player : MonoBehaviour
 		{
             gameObject.SetActive(false);
 		}
-
+        
     }
 	void AnimationUpdate()
     {
