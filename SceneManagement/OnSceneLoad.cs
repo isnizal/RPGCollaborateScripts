@@ -28,11 +28,11 @@ public class OnSceneLoad : MonoBehaviour
 	}
 	public void CheckLastSceneLoad(Scene scene, LoadSceneMode mode)
 	{
-		if (scene.name == "DungeonScene")
-		{ 		
+		//if (scene.name == "DungeonScene")
+		//{ 		
 			thePlayer = FindObjectOfType<Player>();
 			thePlayer.transform.position = GameObject.Find("PlayerStart").transform.position;
-		}
+		//}
 	}
 
 }
