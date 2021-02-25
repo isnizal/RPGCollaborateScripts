@@ -43,7 +43,9 @@ public class Player : MonoBehaviour
     public int currentGold;
 
     private string currentCharacterSelection;
-    
+    [SerializeField]
+    //save game
+    private TextMeshProUGUI gameSaveText;
 
     public static Player instance;
   
@@ -104,17 +106,17 @@ public class Player : MonoBehaviour
     //function class increase max hitpoints
     void IncreaseMaxHpForClass()
     {
-        if (name == "Warrior")
+        if (name == "Warrior(Clone)")
         {
             float newPlayerMaxHp = playerMaxHP * 1.3f;
             playerMaxHP = Mathf.RoundToInt(newPlayerMaxHp);
         }
-        else if (name == "Archer")
+        else if (name == "Archer(Clone)")
         {
             float newPlayerMaxMp = playerMaxMana *0.8f;
             playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
         }
-        else if (name == "Mage")
+        else if (name == "Mage(Clone)")
         {
             float newPlayerMaxMp = playerMaxMana * 0.5f;
             playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
@@ -189,81 +191,44 @@ public class Player : MonoBehaviour
     public int playerLevel;
     public float playerPositionX;
     public float playerPositionY;
+    private bool gameSave = true;
     
     void Update()
     {
         currentValueText.text = "" + currentGold;
-        if (Input.GetKeyDown(KeyCode.K))
-		{
-            playerExperience = LevelSystem.experience;
-            playerLevel = LevelSystem.currentLevel;
-            playerPositionX = transform.position.x;
-            playerPositionY = transform.position.y;
-            Debug.Log("save");
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold = currentGold;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP = playerCurrentHP;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana = playerCurrentMana;
-            ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP = LevelSystem.experience;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel = LevelSystem.currentLevel;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX = transform.position.x;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY = transform.position.y;
-            ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection = currentCharacterSelection;
-            ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerScene = SceneManager.GetActiveScene().name;
-
-            ProtectedSaveFiles.Basic.SaveController.Save();
-            inventory.Save();
-            equipment.Save();
-		}
-        if(Input.GetKeyDown(KeyCode.L))
-		{
-
-            Debug.Log("load");
-            ProtectedSaveFiles.Basic.SaveController.Load();
-            currentGold = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold;
-            playerCurrentHP = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP;
-            playerCurrentMana = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana;
-            playerExperience = ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP;
-            playerLevel  = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel;
-            playerPositionX = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX;
-            playerPositionY = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY;
-            currentCharacterSelection = ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection;
-
-            
-            transform.position = new Vector2(playerPositionX, playerPositionY);
-            inventory.Load();
-            equipment.Load();
-		}            
+         
         movement = Vector3.zero;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        SaveAndLoadGame();
         AnimationUpdate();
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (this.name == "Archer")
+            if (this.name == "Archer(Clone)")
             {
                 if (arrowSpawn)
                 {
                     if (canFire)
                     {
                         canFire = false;
-                        StartCoroutine(Attacking("Archer"));
+                        StartCoroutine(Attacking("Archer(Clone)"));
                     }
                 }
             }
-            else if (this.name == "Mage")
+            else if (this.name == "Mage(Clone)")
             {
                 if (orbSpawn)
                 {
                     if (canFire)
                     {
                         canFire = false;
-                        StartCoroutine(Attacking("Mage"));
+                        StartCoroutine(Attacking("Mage(Clone)"));
                     }
                 }
             }
             else
             {
-                StartCoroutine(Attacking("Warrior"));
+                StartCoroutine(Attacking("Warrior(Clone)"));
             }
         }
 
@@ -273,11 +238,71 @@ public class Player : MonoBehaviour
 		}
         
     }
+    IEnumerator WaitForSeconds(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        gameSaveText.gameObject.SetActive(false);
+        gameSave = true;
+    }
+    void SaveAndLoadGame()
+    {
+        if (gameSave)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                gameSaveText.gameObject.SetActive(true);
+                gameSaveText.text = "Save Game...Please Wait";
+                gameSave = false;
+                playerExperience = LevelSystem.experience;
+                playerLevel = LevelSystem.currentLevel;
+                playerPositionX = transform.position.x;
+                playerPositionY = transform.position.y;
+                Debug.Log("save");
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold = currentGold;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP = playerCurrentHP;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana = playerCurrentMana;
+                ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP = LevelSystem.experience;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel = LevelSystem.currentLevel;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX = transform.position.x;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY = transform.position.y;
+                ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection = currentCharacterSelection;
+                ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerScene = SceneManager.GetActiveScene().name;
+
+                ProtectedSaveFiles.Basic.SaveController.Save();
+                inventory.Save();
+                equipment.Save();
+                StartCoroutine(WaitForSeconds(1f));
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                gameSaveText.gameObject.SetActive(true);
+                gameSaveText.text = "Load Game...Please Wait";
+                gameSave = false;
+                Debug.Log("load");
+                ProtectedSaveFiles.Basic.SaveController.Load();
+                currentGold = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerGold;
+                playerCurrentHP = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerHP;
+                playerCurrentMana = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerMana;
+                playerExperience = ProtectedSaveFiles.Basic.SaveController.Data.SaveCurrentEXP;
+                playerLevel = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLevel;
+                playerPositionX = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationX;
+                playerPositionY = ProtectedSaveFiles.Basic.SaveController.Data.SavePlayerLocationY;
+                currentCharacterSelection = ProtectedSaveFiles.Basic.SaveController.Data.SaveCharacterSelection;
+
+
+                transform.position = new Vector2(playerPositionX, playerPositionY);
+                inventory.Load();
+                equipment.Load();
+                StartCoroutine(WaitForSeconds(1f));
+            }
+        }
+    }
 	void AnimationUpdate()
     {
         if (movement != Vector3.zero)
         {
-            if (this.name == "Archer" || this.name == "Mage")
+            if (this.name == "Archer(Clone)" || this.name == "Mage(Clone)")
             {
                 if (canFire)
                 {
@@ -313,21 +338,22 @@ public class Player : MonoBehaviour
     public float mageRateOfFire = 1f;
     private IEnumerator Attacking(string warriorClass)
 	{
-        if (warriorClass == "Warrior")
+        if (warriorClass == "Warrior(Clone)")
         {
             animator.SetBool("attacking", true);
             yield return null;
             animator.SetBool("attacking", false);
             yield return new WaitForSeconds(.3f);
         }
-        else if (warriorClass == "Archer")
+        else if (warriorClass == "Archer(Clone)")
         {
             animator.SetBool("attacking", true);
+            Debug.Log("firing");
             yield return new WaitForSeconds(archerRateOfFire);
             animator.SetBool("attacking", false);
             canFire = true;
         }
-        else if (warriorClass == "Mage")
+        else if (warriorClass == "Mage(Clone)")
         {
             animator.SetBool("attacking", true);
             yield return null;
@@ -339,14 +365,16 @@ public class Player : MonoBehaviour
     public void SpawnArrowUp()
     {
 
-        if (this.name == "Archer")
+        if (this.name == "Archer(Clone)")
         {
+
                 GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, 45)));
+            Debug.Log("spawn arrow");
                 arrow.transform.SetParent(transform);
                 arrow.GetComponent<ArrowMove>().enableUpMove = true;
 
         }
-        else if (this.name == "Mage")
+        else if (this.name == "Mage(Clone)")
         {
 
             GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
@@ -356,13 +384,13 @@ public class Player : MonoBehaviour
 
     }
     public void SpawnArrowLeft() {
-        if (this.name == "Archer")
+        if (this.name == "Archer(Clone)")
         {
             GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, 135)));
             arrow.transform.SetParent(transform);
             arrow.GetComponent<ArrowMove>().enableLeftMove = true;
         }
-        else if (this.name == "Mage")
+        else if (this.name == "Mage(Clone)")
         {
             GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             arrow.transform.SetParent(transform);
@@ -370,13 +398,13 @@ public class Player : MonoBehaviour
         }
     }
     public void SpawnArrowRight() {
-        if (this.name == "Archer")
+        if (this.name == "Archer(Clone)")
         {
             GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, -45)));
             arrow.transform.SetParent(transform);
             arrow.GetComponent<ArrowMove>().enableRightMove = true;
         }
-        else if (this.name == "Mage")
+        else if (this.name == "Mage(Clone)")
         {
             GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             arrow.transform.SetParent(transform);
@@ -384,13 +412,13 @@ public class Player : MonoBehaviour
         }
     }
     public void SpawnArrowDown() {
-        if (this.name == "Archer")
+        if (this.name == "Archer(Clone)")
         {
             GameObject arrow = Instantiate(arrowPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(new Vector3(0f, 0f, -135)));
             arrow.transform.SetParent(transform);
             arrow.GetComponent<ArrowMove>().enableDownMove = true;
         }
-        else if (this.name == "Mage")
+        else if (this.name == "Mage(Clone)")
         {
             GameObject arrow = Instantiate(orbPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
             arrow.transform.SetParent(transform);
@@ -508,7 +536,7 @@ public class Player : MonoBehaviour
         playerDexterityPower = tempdexterityvalue;
         if (attribute.attributeType == Attributes.Dexterity)
         {
-            if (this.name == "Archer")
+            if (this.name == "Archer(Clone)")
             {
                 if (enableDxtPowr)
                 {

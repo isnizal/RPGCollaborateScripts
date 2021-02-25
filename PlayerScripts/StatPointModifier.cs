@@ -35,12 +35,12 @@ public class StatPointModifier : MonoBehaviour
         strAllocatedValueText.text = "" + tempstrholder;
         defValueText.text = "" + thePlayer.attributes[1].modifiableValue.BaseValue;
         defAllocatedValueText.text = "" + tempdefholder;
-        if (thePlayer.name == "Mage")
+        if (thePlayer.name == "Mage(Clone)")
         {
             intValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
             intAllocatedValueText.text = "" + tempintholder;
         }
-		else if (thePlayer.name == "Archer")
+		else if (thePlayer.name == "Archer(Clone)")
 		{
             //start range maybe at 5, 5 equal 0 dexterity holder value
 			dexValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
@@ -158,13 +158,13 @@ public class StatPointModifier : MonoBehaviour
         thePlayer.statPointsAllocated += tempdefholder;
         tempdefholder = 0;
 
-        if (thePlayer.name == "Mage")
+        if (thePlayer.name == "Mage(Clone)")
         {
             thePlayer.attributes[2].modifiableValue.BaseValue += tempintholder;
             thePlayer.statPointsAllocated += tempintholder;
             tempintholder = 0;
         }
-		else if (thePlayer.name == "Archer")
+		else if (thePlayer.name == "Archer(Clone)")
 		{
             //increase range
 			//thePlayer.arrowPrefab.GetComponent<ArrowMove>().shootingRange += tempdexholder;
