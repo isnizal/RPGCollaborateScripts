@@ -32,13 +32,13 @@ public class CharacterSelection : MonoBehaviour
 				characterObject.gameObject.SetActive(false);
 				break;
 			case "magePrefab":
-				characterObject = Instantiate(warriorPrefab);
+				characterObject = Instantiate(magePrefab);
 				characterObject.transform.SetParent(transform);
 				saveCharacterName = character;
 				characterObject.gameObject.SetActive(false);
 				break;
 			case "archerPrefab":
-				characterObject = Instantiate(warriorPrefab);
+				characterObject = Instantiate(archerPrefab);
 				characterObject.transform.SetParent(transform);
 				saveCharacterName = character;
 				characterObject.gameObject.SetActive(false);
