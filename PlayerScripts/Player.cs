@@ -348,7 +348,6 @@ public class Player : MonoBehaviour
         else if (warriorClass == "Archer(Clone)")
         {
             animator.SetBool("attacking", true);
-            Debug.Log("firing");
             yield return new WaitForSeconds(archerRateOfFire);
             animator.SetBool("attacking", false);
             canFire = true;

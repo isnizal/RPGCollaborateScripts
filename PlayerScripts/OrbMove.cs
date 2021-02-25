@@ -12,6 +12,8 @@ public class OrbMove : MonoBehaviour
     void Start()
     {
         Invoke("DestroyOrb", selfDestroy);
+        Player thePlayer = FindObjectOfType<Player>();
+        orbDamage += thePlayer.playerIntelligencePower;
     }
     public bool enableRightMove, enableUpMove, enableDownMove, enableLeftMove;
     // Update is called once per frame
