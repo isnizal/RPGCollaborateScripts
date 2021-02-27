@@ -8,14 +8,16 @@ public class OnSceneLoad : MonoBehaviour
 	private Player thePlayer;
 	[SerializeField]
 	private GameObject createCharacterSelection;
-	private bool characterSelect;
 	private void Start()
 	{
 		findCharacterSelection();
+        SceneManager.sceneLoaded += CheckLastSceneLoad;
+        //SceneManager.sceneUnloaded += SceneUnloaded;
     }
 	void findCharacterSelection()
 	{
 		bool character = FindObjectOfType<CharacterSelection>();
+        //player load scene
 		if (!character)
 		{
              //create character selection with warrior
@@ -38,30 +40,42 @@ public class OnSceneLoad : MonoBehaviour
                  thePlayer.transform.position = new Vector2(thePlayer.playerPositionX, thePlayer.playerPositionY);
                  return;
              }
+
         }
 		else
 		{
+            //player load scene at first spawn
            thePlayer = FindObjectOfType<CharacterSelection>().GetCharacterObject().GetComponent<Player>();
-           if (!thePlayer.gameObject.activeInHierarchy)
-           {
-               thePlayer.gameObject.SetActive(true);
-               thePlayer = FindObjectOfType<Player>();
-               thePlayer.transform.position = GameObject.Find("FirstSpawn").transform.position;
-           }
-           else
-           {
-               SceneManager.sceneLoaded += CheckLastSceneLoad;
-           }
-		}
+            if (!thePlayer.gameObject.activeInHierarchy && SceneManager.GetActiveScene().name == "MainWorld")
+            {
+                thePlayer.gameObject.SetActive(true);
+                thePlayer = FindObjectOfType<Player>();
+                thePlayer.transform.position = GameObject.Find("FirstSpawn").transform.position;
+            }
+
+        }
 	}
     private void Update()
     {
 	}
 	public void CheckLastSceneLoad(Scene scene, LoadSceneMode mode)
 	{
-		
-			thePlayer = FindObjectOfType<Player>();
-			thePlayer.transform.position = GameObject.Find("PlayerStart").transform.position;
+        if (scene.name == "DungeonScene")
+        {
+
+            thePlayer = FindObjectOfType<Player>();
+            thePlayer.transform.position = GameObject.Find("PlayerStart").transform.position;
+        }
+        if (scene.name == "MainWorld")
+        {
+            thePlayer = FindObjectOfType<Player>();
+            thePlayer.transform.position = GameObject.Find("PlayerStart").transform.position;
+        }
 	}
+    public void SceneUnloaded(Scene scene)
+    {
+        //Debug.Log(scene.name);
+    }
+
 
 }

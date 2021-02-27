@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         EnemyFollow();
-        if (this.animator.GetBool("moving") )
+        if (this.gameObject.name != "RedSlime Lv1(Clone)" && this.gameObject.name != "RedSlime Lv5(Clone)")
         {
             if (myRigidbody.velocity != Vector2.zero)
             {

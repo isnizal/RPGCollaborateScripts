@@ -110,16 +110,23 @@ public class Player : MonoBehaviour
         {
             float newPlayerMaxHp = playerMaxHP * 1.3f;
             playerMaxHP = Mathf.RoundToInt(newPlayerMaxHp);
+            float newPlayerMaxMp = playerMaxMana * 0.5f;
+            playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
+
         }
         else if (name == "Archer(Clone)")
         {
-            float newPlayerMaxMp = playerMaxMana *0.8f;
+            float newPlayerMaxHp = playerMaxHP *0.8f;
+            playerMaxMana = Mathf.RoundToInt(newPlayerMaxHp);
+            float newPlayerMaxMp = playerMaxMana * 0.5f;
             playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
         }
         else if (name == "Mage(Clone)")
         {
-            float newPlayerMaxMp = playerMaxMana * 0.5f;
+            float newPlayerMaxMp = playerMaxMana * 1.3f;
             playerMaxMana = Mathf.RoundToInt(newPlayerMaxMp);
+            float newPlayerMaxHp = playerMaxHP * 0.5f;
+            playerMaxHP = Mathf.RoundToInt(newPlayerMaxHp);
         }
     }
     public void OnBeforeSlotUpdate(InventorySlot _slot)
