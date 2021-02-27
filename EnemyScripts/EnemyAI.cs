@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         EnemyFollow();
-        if (this.name != "RedSlime(Clone)")
+        if (this.animator.GetBool("moving") )
         {
             if (myRigidbody.velocity != Vector2.zero)
             {
