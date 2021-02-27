@@ -46,7 +46,7 @@ public class EnemyStats : MonoBehaviour
 		{
 			//store enemy position before die
 			lastEnemyPos = this.transform.position;
-			Destroy(gameObject);
+			Destroy(this.gameObject);
 			b_enemyDead = true;
 			spawner.spawnCounter--;
 			thePlayer.LevelSystem.AddExp(expToGive);
@@ -73,7 +73,7 @@ public class EnemyStats : MonoBehaviour
 	{
 		//set the floating number to this enemy attack power
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
-		clone.GetComponent<FloatingNumbers>().changeUI = true;
+		//clone.GetComponent<FloatingNumbers>().changeUI = true;
 		clone.GetComponent<FloatingNumbers>().damageNumber = enemyAttackPower;
 	}
 	//miss damage
@@ -82,9 +82,9 @@ public class EnemyStats : MonoBehaviour
 		//set the floating number to this enemy attack power
 		//spawn obj at player transform
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
-		clone.GetComponent<FloatingNumbers>().changeUI = false;
+		//clone.GetComponent<FloatingNumbers>().changeUI = false;
 		//get the object damage number floating point
-		clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower;
+		//clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower;
 
 
 	}

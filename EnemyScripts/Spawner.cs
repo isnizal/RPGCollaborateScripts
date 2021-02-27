@@ -7,12 +7,13 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoints;
     public Transform enemyHolder;
     public GameObject[] enemyPrefab;
+    public GameObject newEnemyClone;
     public float timeBetweenSpawn, spawnDelay;
     public int spawnCounter, maxSpawns;
 
-    void Start()
+    void Update()
     {
-        InvokeRepeating("EnemySpawn", timeBetweenSpawn, spawnDelay);
+        InvokeRepeating(nameof(EnemySpawn), timeBetweenSpawn, spawnDelay);
     }
 
     void EnemySpawn()
@@ -22,8 +23,8 @@ public class Spawner : MonoBehaviour
             return;
         if(spawnCounter < maxSpawns)
 		{
-            GameObject newClone = Instantiate(enemyPrefab[0], spawnPoints[randomSpawnPoint].position, Quaternion.identity) as GameObject;
-            newClone.transform.parent = enemyHolder;
+            newEnemyClone = Instantiate(enemyPrefab[0], spawnPoints[randomSpawnPoint].position, Quaternion.identity) as GameObject;
+            newEnemyClone.transform.parent = enemyHolder;
             spawnCounter++;
 		}
 	}
