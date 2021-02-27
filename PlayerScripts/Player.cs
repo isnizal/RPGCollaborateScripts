@@ -512,6 +512,7 @@ public class Player : MonoBehaviour
         var groundItem = other.GetComponent<GroundItem>();
         if(groundItem)
 		{
+            Debug.Log(groundItem);
             //initialize new item function item object
             Item newItem = new Item(groundItem.itemObject);
             if (inventory.AddItem(newItem , 1))

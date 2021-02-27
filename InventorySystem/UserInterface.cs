@@ -343,6 +343,7 @@ public abstract class UserInterface : MonoBehaviour
 	//end Drag
 	public void OnDragEnd(GameObject obj)
 	{
+		Debug.Log(obj);
 		//check obj is null return
 		//check is there item in the slot inventory
 		if (obj.gameObject.tag == "Slot")

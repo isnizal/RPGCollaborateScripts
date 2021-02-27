@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 
         strValueText.text = "" + player.playerAttackPower.ToString();
         defValueText.text = "" + player.playerDefensePower.ToString();
-        if (player.name == "Archer")
+        if (player.name == "Archer(Clone)")
         {
             intValueText.text = "" + player.playerDexterityPower.ToString() ;
         }
@@ -121,7 +121,8 @@ public class UIManager : MonoBehaviour
                     if (controlSpawn)
                     {
                         GameObject itemObj = Instantiate(groundItem[item].gameObject, new Vector2(lastMousePos.x, lastMousePos.y), Quaternion.identity) as GameObject;
-                        itemObj.transform.SetParent(GameObject.Find("ParentItemDrop").transform.parent);
+                        Transform parentItemDrop = GameObject.Find("ParentItemDrop").transform;
+                        itemObj.transform.SetParent(parentItemDrop);
                         //minus the amount have of food
                         slot.newAmount -= 1;
                         //updated the slot interface
@@ -141,7 +142,8 @@ public class UIManager : MonoBehaviour
                     if (controlSpawn)
                     {
                         GameObject itemObj = Instantiate(groundItem[item].gameObject, new Vector2(lastMousePos.x, lastMousePos.y), Quaternion.identity) as GameObject;
-                        itemObj.transform.SetParent(GameObject.Find("ParentItemDrop").transform.parent);
+                        Transform parentItemDrop = GameObject.Find("ParentItemDrop").transform;
+                        itemObj.transform.SetParent(parentItemDrop);
                         //remove the item after spawn
                         slot.RemoveItem();
                         //typeOf = null;
