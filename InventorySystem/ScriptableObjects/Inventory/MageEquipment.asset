@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d693c323c66265e49b8b024b5f9300e1, type: 3}
   m_Name: MageEquipment
   m_EditorClassIdentifier: 
-  savePath: 
+  savePath: /Mequipment.Save
   itemDataBase: {fileID: 11400000, guid: 70ffd974d2038d74c9f9ff9fa002b26d, type: 2}
   type: 1
   Container:
