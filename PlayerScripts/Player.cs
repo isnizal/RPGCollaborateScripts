@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public float playerDexterityPower;
     [Space]
     public int statPoints;
+    private int newStatPoints;
     public float statPointsAllocated;
     [Space]
     public Level LevelSystem;
@@ -97,11 +98,20 @@ public class Player : MonoBehaviour
 
     public void OnLevelUp()
 	{
-       
-        statPoints = Random.Range(1, 5);
+
+        StatPoints();
         IncreaseMaxHpForClass();
+        LevelSystem.experience = 0;
         print("Level Up!");
 	}
+    private void StatPoints()
+	{
+        int tempstatpoints = Random.Range(1, 5);
+        tempstatpoints = newStatPoints;
+        newStatPoints += statPoints;
+
+
+	}        
     
     //function class increase max hitpoints
     void IncreaseMaxHpForClass()

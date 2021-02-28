@@ -22,238 +22,286 @@ MonoBehaviour:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
     - AllowType: 
       newItem:
         Name: 
         Id: -1
         buffs: []
+        itemPrice: 0
         itemLevel: 0
         consumables: 0
-        valueType: 0
+        itemType: 0
         attributes: 0
+        values: 0
       newAmount: 0
