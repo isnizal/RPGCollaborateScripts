@@ -233,12 +233,15 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(this.name == "Warrior(Clone)")
             {
-                StartCoroutine(Attacking("Warrior(Clone)"));
+                animator.SetBool("attacking", false);
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Attacking("Warrior(Clone)"));
+        }
         if (playerCurrentHP <= 0)
 		{
             gameObject.SetActive(false);
@@ -348,9 +351,7 @@ public class Player : MonoBehaviour
         if (warriorClass == "Warrior(Clone)")
         {
             animator.SetBool("attacking", true);
-            yield return null;
-            animator.SetBool("attacking", false);
-            yield return new WaitForSeconds(.3f);
+
         }
         else if (warriorClass == "Archer(Clone)")
         {

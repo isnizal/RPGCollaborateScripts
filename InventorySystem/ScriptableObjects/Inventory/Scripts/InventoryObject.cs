@@ -34,17 +34,25 @@ public class InventoryObject : ScriptableObject
 		if (EmptySlotCount <= 0)
 			return false;
 
+		if (newItem == null)
+		{
+			Debug.Log("cannot find item");
+		}
 		//check item at the slot for the same ID to get that slot item
-		InventorySlot sameSlotID = FindItemOnInventory(newItem);
+		InventorySlot CheckSlot = FindItemOnInventory(newItem);
+		if (CheckSlot != null)
+		{
+			Debug.LogWarning("same slot id");
+		}
 		//item database for the new item is it not healing or sameslot id is none
-		if (!itemDataBase.ItemObjects[newItem.Id].stackable || sameSlotID == null)
+		if (!itemDataBase.ItemObjects[newItem.Id].stackable || CheckSlot == null)
 		{
 			//add slot to the item
 			SetEmptySlot(newItem, _amount);
 			return true;
 		}
 		//item not armor or equip add amount
-		sameSlotID.AddHealing(_amount);
+		CheckSlot.AddHealing(_amount);
 		//set item level of this to pick up item level
 		thisItemObject.itemLevel = newItem.itemLevel;
 		return true;
@@ -76,6 +84,7 @@ public class InventoryObject : ScriptableObject
 			//check the slot for an item i is same with the item id that pick.
 			if(GetSlots[slots].newItem.Id == _item.Id)
 			{
+				Debug.LogWarning("item id on the slot have id with new item id");
 				return GetSlots[slots];
 			}
 		}
