@@ -95,7 +95,7 @@ public class Item
 	public Item()
 	{
 		Name = "";
-		Id = -1;
+		//Id = -1;
 	}
 	public Item(ItemObject itemObj)
 	{

@@ -49,18 +49,12 @@ public class InventoryObject : ScriptableObject
 		{
 			//add slot to the item
 			SetEmptySlot(newItem, _amount);
-			thisItemObject.itemLevel = newItem.itemLevel;
+			//set item level of this to pick up item level
+
 			return true;
 		}
-		else
-		{
-		    
-			//item not armor or equip add amount
-			GetSlotSameID.AddHealing(_amount);
-		}
-
-		//set item level of this to pick up item level
-		
+		GetSlotSameID.AddHealing(_amount);
+		thisItemObject.itemLevel = newItem.itemLevel;
 		return true;
 	}
 
