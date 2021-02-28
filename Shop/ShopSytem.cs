@@ -82,6 +82,7 @@ public class ShopSytem : MonoBehaviour
     public void BowButton()
     {
         //deactivate all drop down
+        swordDropDown.gameObject.SetActive(false);
         axeDropDown.gameObject.SetActive(false);
         hammerDropDown.gameObject.SetActive(false);
         wandDropDown.gameObject.SetActive(false);
@@ -96,6 +97,8 @@ public class ShopSytem : MonoBehaviour
     public void HammerButton()
     {
         //deactivate all drop down
+        swordDropDown.gameObject.SetActive(false);
+        swordDropDown.gameObject.SetActive(false);
         axeDropDown.gameObject.SetActive(false);
         bowDropDown.gameObject.SetActive(false);
         wandDropDown.gameObject.SetActive(false);
@@ -109,6 +112,7 @@ public class ShopSytem : MonoBehaviour
     public void DaggerButton()
     {
         //deactivate all drop down
+        swordDropDown.gameObject.SetActive(false);
         axeDropDown.gameObject.SetActive(false);
         hammerDropDown.gameObject.SetActive(false);
         wandDropDown.gameObject.SetActive(false);
@@ -122,6 +126,7 @@ public class ShopSytem : MonoBehaviour
     public void WandButton()
     {
         //deactivate all drop down
+        swordDropDown.gameObject.SetActive(false);
         axeDropDown.gameObject.SetActive(false);
         hammerDropDown.gameObject.SetActive(false);
         daggerDropDown.gameObject.SetActive(false);
@@ -135,6 +140,7 @@ public class ShopSytem : MonoBehaviour
     public void BoltButton()
     {
         //deactivate all drop down
+        swordDropDown.gameObject.SetActive(false);
         axeDropDown.gameObject.SetActive(false);
         hammerDropDown.gameObject.SetActive(false);
         wandDropDown.gameObject.SetActive(false);
@@ -354,7 +360,6 @@ public class ShopSytem : MonoBehaviour
         //get component drop down of the option string type
         //store the string type to current of the press for the player to confirm
         selectedItem = swordDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-       Debug.Log(selectedItem);
         //add tool tip
         swordToolTip.gameObject.SetActive(true);
         //find text children name text, item level, rarity, and value
@@ -371,10 +376,6 @@ public class ShopSytem : MonoBehaviour
                 t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -384,7 +385,6 @@ public class ShopSytem : MonoBehaviour
         //get component drop down of the option string type
         //store the string type to current of the press for the player to confirm
         selectedItem = axeDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        Debug.Log(selectedItem);
         //add tool tip
         swordToolTip.gameObject.SetActive(true);
         //find text children name text, item level, rarity, and value
@@ -401,10 +401,6 @@ public class ShopSytem : MonoBehaviour
                 t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -430,10 +426,6 @@ public class ShopSytem : MonoBehaviour
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
             }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
-            }
         }
         FindItemFromArrayOfGroundItem();
     }
@@ -458,10 +450,6 @@ public class ShopSytem : MonoBehaviour
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
             }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
-            }
         }
         FindItemFromArrayOfGroundItem();
     }
@@ -484,10 +472,6 @@ public class ShopSytem : MonoBehaviour
                 t_swordValue.text = "Item Damage: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -515,12 +499,8 @@ public class ShopSytem : MonoBehaviour
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
             }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
-            }
         }
-        //FindItemFromArrayOfGroundItem();
+        FindItemFromArrayOfGroundItem();
     }
     public void ActivateDropDownBow()
     {
@@ -542,17 +522,12 @@ public class ShopSytem : MonoBehaviour
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
                 break;
             }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
-            }
         }
         FindItemFromArrayOfGroundItem();
     }
     public void ActivateDropDownHelmet() {
         //get reference option drop down type string
         selectedItem = helmetDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //store the string type to current press for the player to confirm buy
         //add tool tip
         helmetToolTip.gameObject.SetActive(true);
@@ -567,10 +542,7 @@ public class ShopSytem : MonoBehaviour
                 t_helmetRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
                 t_helmetValue.text = "Item Defense: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
+                break;
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -578,7 +550,6 @@ public class ShopSytem : MonoBehaviour
     public void ActivateDropDownTorso()
     {        //store the string type to confirm buy  to the player
         selectedItem = torsoDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //add tool tip
         torsoToolTip.gameObject.SetActive(true);
         //component text to show
@@ -592,10 +563,7 @@ public class ShopSytem : MonoBehaviour
                 t_torsoRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
                 t_torsoValue.text = "Item Defense: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
+                break;
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -603,7 +571,6 @@ public class ShopSytem : MonoBehaviour
     public void ActivateDropDownShield()
     {         //store the string option of the item
         selectedItem = shieldDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //add tool tip for the player
         shieldToolTip.gameObject.SetActive(true);
         //get their component text to show
@@ -617,10 +584,7 @@ public class ShopSytem : MonoBehaviour
                 t_shieldRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
                 t_shieldValue.text = "Item Defense: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
+                break;
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -628,7 +592,6 @@ public class ShopSytem : MonoBehaviour
     public void ActivateDropDownBoot()
     {        //store the string type to current press for the player to confirm buy
         selectedItem = bootDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //add tool tip
         bootToolTip.gameObject.SetActive(true);
         //component text to show
@@ -642,10 +605,7 @@ public class ShopSytem : MonoBehaviour
                 t_bootRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
                 t_bootValue.text = "Item Defense: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().values.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
+                break;
             }
         }
         FindItemFromArrayOfGroundItem();
@@ -653,7 +613,6 @@ public class ShopSytem : MonoBehaviour
     public void ActivateDropDownFood()
     {        //get reference drop down for the healing
         selectedItem = foodDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //activate drop down button press
         healingToolTip.gameObject.SetActive(true);
         //store reference for the drop down string for the player confirm buy
@@ -669,10 +628,7 @@ public class ShopSytem : MonoBehaviour
                 t_healingRarity.text = "Item Rarity: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().itemRarity.ToString();
                 t_healingAmount.text = "Item Amount: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().consumables.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
-            }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
+                break;
             }
         }
         FindItemFromArrayOfGroundItem(); 
@@ -680,7 +636,6 @@ public class ShopSytem : MonoBehaviour
     public void ActivateDropDownPotion()
     {        //get reference drop down for the healing
         selectedItem = potionDropDown.GetComponent<TMP_Dropdown>().captionText.text.ToString();
-        FindItemFromArrayOfGroundItem();
         //activate drop down button press
         healingToolTip.gameObject.SetActive(true);
         //store reference for the drop down string for the player confirm buy
@@ -697,16 +652,13 @@ public class ShopSytem : MonoBehaviour
                 t_healingAmount.text = "Item Value: " + itemDatabaseItemObj.ItemObjects[itemDatabase].CreateItem().consumables.ToString();
                 t_itemPrice.text = itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemPrice.ToString();
             }
-            else
-            {
-                Debug.Log("item not in database or there is no selected item to buy");
-            }
         }
         FindItemFromArrayOfGroundItem();
     }
 
     public GameObject fullSlot;
     public GameObject enableWindowNoMoney;
+    private int saveMoney;
     Player player;
     //function confirm buy Item
     public void ConfirmBuy() {
@@ -720,19 +672,29 @@ public class ShopSytem : MonoBehaviour
             //money more than zero to minus
             if (player.currentGold > 0)
             {
-                Debug.Log("have money");
-                player.currentGold -= itemPrice;
-                B_confirm();
-                DeactivateAllToolTip();
-                if (player.currentGold <= 0)
+                Debug.Log("gold extract");
+                
+                if (player.currentGold >= itemPrice)
                 {
-                    player.currentGold = 0;
+                    saveMoney = itemPrice;
+                    player.currentGold -= itemPrice;
+                    B_confirm();
+                    DeactivateAllToolTip();
                 }
+                else {
+                    Debug.Log("item high price");
+                    
+                    enableWindowNoMoney.SetActive(true);
+                    DeactivateAllToolTip();
+                    B_Nconfirm();
+                    buyButton.SetActive(false);
+                }
+
             }
             //no money window deactivate all tool tip
             else
             {
-                Debug.Log("no money");
+                Debug.Log("cannot extract gold");
                 enableWindowNoMoney.SetActive(true);
                 DeactivateAllToolTip();
                 B_Nconfirm();
@@ -823,6 +785,12 @@ public class ShopSytem : MonoBehaviour
         }
     }
 
+    public void Refund()
+    {
+        player.currentGold += saveMoney;
+        saveMoney = 0;
+        B_Nconfirm();
+    }
     //function disable pop up screen buy item
     public void B_Nconfirm()
     {
@@ -840,7 +808,6 @@ public class ShopSytem : MonoBehaviour
     //reference control loop to prevent error looping buying the same item
     private bool buyOnce;
     //referece item can buy
-    private bool itemEnable;
     //function for loop one call after player trully buy
     void FindItemFromArrayOfGroundItem()
     {
