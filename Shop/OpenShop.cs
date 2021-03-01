@@ -16,11 +16,18 @@ public class OpenShop : MonoBehaviour
         
     }
     public GameObject shopObject;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             shopObject.gameObject.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            shopObject.gameObject.SetActive(false);
         }
     }
 }
