@@ -71,7 +71,6 @@ public class UIManager : MonoBehaviour
         {
             intValueText.text = "" + player.playerIntelligencePower.ToString();
         }
-
         statsPointsText.text = "" + player.statPoints;
     }
 

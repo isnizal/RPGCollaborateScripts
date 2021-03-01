@@ -368,7 +368,6 @@ public class ShopSytem : MonoBehaviour
 
             if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
             {
-                Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
                 //set the text to the selected item property
                 t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
                 t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
@@ -393,7 +392,6 @@ public class ShopSytem : MonoBehaviour
 
             if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
             {
-                Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
                 //set the text to the selected item property
                 t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
                 t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();
@@ -490,7 +488,6 @@ public class ShopSytem : MonoBehaviour
 
             if (selectedItem == itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name)
             {
-                //Debug.Log(itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name);
                 //set the text to the selected item property
                 t_swordName.text = "Name: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.Name.ToString();
                 t_swordItemLevel.text = "Item Level: " + itemDatabaseItemObj.ItemObjects[itemDatabase].newItem.itemLevel.ToString();

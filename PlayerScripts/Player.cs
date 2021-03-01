@@ -255,6 +255,8 @@ public class Player : MonoBehaviour
         if (playerCurrentHP <= 0)
 		{
             gameObject.SetActive(false);
+            inventory.Clear();
+            equipment.Clear();
 		}
         
     }

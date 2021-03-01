@@ -42,7 +42,7 @@ public class InventoryObject : ScriptableObject
 		InventorySlot GetSlotSameID = FindItemOnInventory(newItem);
 		if (GetSlotSameID != null)
 		{
-			Debug.LogWarning(newItem.Name + "id same on slot " + GetSlotSameID);
+			Debug.LogWarning(newItem.Name + " id same on slot " + GetSlotSameID);
 		}
 		//item database for the new item is it not healing or sameslot id is null
 		if (!itemDataBase.ItemObjects[newItem.Id].stackable || GetSlotSameID == null)
@@ -50,7 +50,7 @@ public class InventoryObject : ScriptableObject
 			//add slot to the item
 			SetEmptySlot(newItem, _amount);
 			//set item level of this to pick up item level
-
+			
 			return true;
 		}
 		GetSlotSameID.AddHealing(_amount);
@@ -108,7 +108,7 @@ public class InventoryObject : ScriptableObject
 		for (int slots = 0; slots < GetSlots.Length; slots++)
 		{
 			//check for the item slots 1 to item slot 24
-			Debug.Log(GetSlots[slots].ItemObject.name);
+			Debug.Log("Item full");
 		}
 		return null;
 	}
@@ -171,6 +171,7 @@ public class InventoryObject : ScriptableObject
 	public void Clear()
 	{
 		Container.Clear();
+
 	}
 }
 [System.Serializable]
