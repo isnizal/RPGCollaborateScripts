@@ -22,13 +22,17 @@ public class EnemyAI : MonoBehaviour
     public GameObject enemyText;
 
     private Animator animator;
+    private GameObject player;
 
 
     void Start()
     {
 
         animator = GetComponent<Animator>();
-        target = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player");
+        if(player != null)
+            target = player.transform;
+
         myRigidbody = GetComponent<Rigidbody2D>();
         timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
         timeToMoveCounter = Random.Range(timeToMove * 0.75f, timeToMove * 1.25f);

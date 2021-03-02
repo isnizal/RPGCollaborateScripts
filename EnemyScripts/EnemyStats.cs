@@ -84,8 +84,7 @@ public class EnemyStats : MonoBehaviour
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
 		clone.GetComponent<FloatingNumbers>().changeUI = false;
 		//get the object damage number floating point
-		clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower.ToString();
-		Debug.Log("M");
+		clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower;
 
 	}
 	//calling on destroy function after enemy destroy

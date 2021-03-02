@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     //save game
     private TextMeshProUGUI gameSaveText;
-
     public static Player instance;
   
     void Start()
@@ -98,17 +97,17 @@ public class Player : MonoBehaviour
 
     public void OnLevelUp()
 	{
-
         StatPoints();
         IncreaseMaxHpForClass();
         LevelSystem.experience = 0;
+        playerCurrentHP = playerMaxHP;
         print("Level Up!");
 	}
-    private void StatPoints()
+    void StatPoints()
 	{
-        var tempstatpoints = Random.Range(1, 5);
-        tempstatpoints += newStatPoints;
-        newStatPoints += statPoints;
+        newStatPoints = Random.Range(1, 5);
+        statPoints += newStatPoints;
+        newStatPoints = 0;
 	}        
     
     //function class increase max hitpoints
@@ -255,9 +254,16 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
             inventory.Clear();
             equipment.Clear();
-		}
+            FindObjectOfType<GameManager>().RespawnPlease();
+
+        }
         
     }
+    private void OnDisable()
+    {
+
+    }
+
     IEnumerator WaitForSeconds(float time)
     {
 
@@ -469,7 +475,6 @@ public class Player : MonoBehaviour
             //player defense is higher than the enemy attack deal no damage
             if (armorAbsorb >= enemyDamage)
             {
-                Debug.Log(armorAbsorb);
                 //call the ui
                 enemy.GetComponent<EnemyStats>().UpdateUIAttackForMiss("MISS");
                 // player health same
@@ -494,6 +499,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            //normal damage
             // no armor
             enemy.GetComponent<EnemyStats>().UpdateUIAttack(enemyDamage);
             playerCurrentHP -= enemyDamage;
@@ -519,6 +525,7 @@ public class Player : MonoBehaviour
 		{
             other.gameObject.GetComponent<EnemyStats>().DamageToEnemy(playerAttackPower);
             var clone = (GameObject) Instantiate(damageNumber, other.transform.position, Quaternion.Euler(Vector3.zero));
+            clone.GetComponent<FloatingNumbers>().changeUI = true;
             clone.GetComponent<FloatingNumbers>().damageNumber = playerAttackPower;
 		}
         //check for ground item

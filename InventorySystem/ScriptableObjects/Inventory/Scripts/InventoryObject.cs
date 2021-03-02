@@ -225,7 +225,6 @@ public class InventorySlot
 			//check item id more than zero
 			if(newItem.Id >= 0)
 			{
-				Debug.Log(uiparent.inventory.itemDataBase.ItemObjects[newItem.Id]);
 				//get the user interface parent inventory of itemdabase item obj of that item number
 				return uiparent.inventory.itemDataBase.ItemObjects[newItem.Id];
 			}

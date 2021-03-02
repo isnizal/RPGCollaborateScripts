@@ -10,12 +10,13 @@ public class FloatingNumbers : MonoBehaviour
     public string damageCharac;
     public Text displayNumber;
     public bool changeUI = true;
-    
-    void Start()
+
+    private void Start()
     {
         if (changeUI)
         {
             displayNumber.text = "" + damageNumber;
+            changeUI = false;
         }
         else if (!changeUI)
         {
@@ -23,10 +24,9 @@ public class FloatingNumbers : MonoBehaviour
             changeUI = true;
         }
     }
-
     void Update()
     {
-        
+
         //displayNumber.text = "" + damageNumber;
         //transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed * Time.deltaTime), transform.position.z);
 
