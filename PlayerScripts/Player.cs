@@ -106,11 +106,9 @@ public class Player : MonoBehaviour
 	}
     private void StatPoints()
 	{
-        int tempstatpoints = Random.Range(1, 5);
-        tempstatpoints = newStatPoints;
+        var tempstatpoints = Random.Range(1, 5);
+        tempstatpoints += newStatPoints;
         newStatPoints += statPoints;
-
-
 	}        
     
     //function class increase max hitpoints
@@ -471,16 +469,18 @@ public class Player : MonoBehaviour
             //player defense is higher than the enemy attack deal no damage
             if (armorAbsorb >= enemyDamage)
             {
+                Debug.Log(armorAbsorb);
                 //call the ui
                 enemy.GetComponent<EnemyStats>().UpdateUIAttackForMiss("MISS");
                 // player health same
                 playerCurrentHP = playerLastHitpoints;
             }
             //check for the damage more than defense absorb
-            if (enemyDamage >= armorAbsorb)
+            else if (enemyDamage >= armorAbsorb)
             {
                 //get the enemy damage after minus with the armor absorb
-                enemyDamage -= armorAbsorb;
+                 enemyDamage -= armorAbsorb;
+               
                 //calling the ui damage of the enemy
                 enemy.GetComponent<EnemyStats>().UpdateUIAttack(enemyDamage);
                 //set the hitpoints to minus to current enemy damage

@@ -35,7 +35,7 @@ public class StatPointModifier : MonoBehaviour
         strAllocatedValueText.text = "" + tempstrholder;
         defValueText.text = "" + thePlayer.attributes[1].modifiableValue.BaseValue;
         defAllocatedValueText.text = "" + tempdefholder;
-        if (thePlayer.name == "Mage(Clone)")
+        if (thePlayer.name == "Mage(Clone)" || thePlayer.name == "Warrior(Clone)")
         {
             intValueText.text = "" + thePlayer.attributes[2].modifiableValue.BaseValue;
             intAllocatedValueText.text = "" + tempintholder;

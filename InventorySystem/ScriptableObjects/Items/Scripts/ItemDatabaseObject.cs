@@ -14,7 +14,9 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
 			//check for that item object of the new data id not equal to this item object number
 			//assign current object number  to this item number
 			if (ItemObjects[itemNumb].newItem.Id != itemNumb)
+			{
 				ItemObjects[itemNumb].newItem.Id = itemNumb;
+			}
 		}
 	}
 

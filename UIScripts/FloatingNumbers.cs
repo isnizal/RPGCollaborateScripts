@@ -7,28 +7,29 @@ public class FloatingNumbers : MonoBehaviour
 {
     public float moveSpeed;
     public int damageNumber;
-    //public string damageCharac;
+    public string damageCharac;
     public Text displayNumber;
-    //public bool changeUI;
+    public bool changeUI = true;
     
     void Start()
     {
-        
+        if (changeUI)
+        {
+            displayNumber.text = "" + damageNumber;
+        }
+        else if (!changeUI)
+        {
+            displayNumber.text = "" + damageCharac.ToString();
+            changeUI = true;
+        }
     }
 
     void Update()
     {
-
-        displayNumber.text = "" + damageNumber;
-        transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed * Time.deltaTime), transform.position.z);
-        //if (changeUI)
-        //{
-        //    displayNumber.text = "" + damageNumber;
-        //}
-        //else if (!changeUI)
-        //{
-        //    displayNumber.text = "" + damageCharac;
-        //}
+        
+        //displayNumber.text = "" + damageNumber;
         //transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed * Time.deltaTime), transform.position.z);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y + (moveSpeed * Time.deltaTime), transform.position.z);
     }
 }
