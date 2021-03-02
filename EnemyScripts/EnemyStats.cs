@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
 	[Header("Enemy Stats")]
+	public int enemyID;
 	public string enemyName;
     public int enemyCurrentHP;
 	public int enemyMaxHP;
@@ -48,7 +49,6 @@ public class EnemyStats : MonoBehaviour
 			lastEnemyPos = this.transform.position;
 			Destroy(this.gameObject);
 			b_enemyDead = true;
-			spawner.spawnCounter--;
 			thePlayer.LevelSystem.AddExp(expToGive);
 		}	
 	}
@@ -73,7 +73,7 @@ public class EnemyStats : MonoBehaviour
 	{
 		//set the floating number to this enemy attack power
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
-		//clone.GetComponent<FloatingNumbers>().changeUI = true;
+		clone.GetComponent<FloatingNumbers>().changeUI = true;
 		clone.GetComponent<FloatingNumbers>().damageNumber = enemyAttackPower;
 	}
 	//miss damage
@@ -82,10 +82,10 @@ public class EnemyStats : MonoBehaviour
 		//set the floating number to this enemy attack power
 		//spawn obj at player transform
 		var clone = Instantiate(damageNumber, thePlayer.transform.position, Quaternion.Euler(Vector3.zero));
-		//clone.GetComponent<FloatingNumbers>().changeUI = false;
+		clone.GetComponent<FloatingNumbers>().changeUI = false;
 		//get the object damage number floating point
-		//clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower;
-
+		clone.GetComponent<FloatingNumbers>().damageCharac = enemyAttackPower.ToString();
+		Debug.Log("M");
 
 	}
 	//calling on destroy function after enemy destroy
@@ -95,6 +95,29 @@ public class EnemyStats : MonoBehaviour
 		if (b_enemyDead)
 		{
 			SpawnItem();
+			if(enemyID == 1)
+				spawner.slimeCounter -= 1;
+
+			if(enemyID == 2)
+				spawner.goblinCounter -= 1;
+
+			if (enemyID == 3)
+				spawner.slime2Counter -= 1;
+
+			if (enemyID == 4)
+				spawner.mushroomCounter -= 1;
+
+			if (enemyID == 5)
+				spawner.skeletonCounter -= 1;
+
+			if (enemyID == 6)
+				spawner.skullCounter -= 1;
+
+			if (enemyID == 7)
+				spawner.rockCounter -= 1;
+
+			if (enemyID == 8)
+				spawner.arachnaCounter -= 1;
 		}
 	}
 
